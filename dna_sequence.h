@@ -21,14 +21,14 @@ public:
     void init(const char* dna);
     char* getDna() const;
     size_t length(const char *& string) const ;
-
+    std::string isValid(std::string dna) const ;
 private:
     char* m_dna;
 
 };
 
 
-inline DnaSequence::DnaSequence(std::string string) : m_dna(new char [string.length()]) {
+inline DnaSequence::DnaSequence(std::string string) : m_dna(new char [isValid(string).length()]) {
     strcpy(m_dna, string.c_str());
 }
 //
@@ -36,7 +36,7 @@ inline DnaSequence::DnaSequence(std::string string) : m_dna(new char [string.len
 //    strcpy(m_dna, string);
 //}
 
-inline DnaSequence::DnaSequence(DnaSequence &dnaSequence) : m_dna(new char [strlen(dnaSequence.getDna())]){
+inline DnaSequence::DnaSequence(DnaSequence &dnaSequence) : m_dna(new char [(isValid(dnaSequence.getDna())).length()]){
     strcpy(m_dna, dnaSequence.getDna());
 }
 
@@ -53,7 +53,7 @@ inline DnaSequence & DnaSequence::operator=(const DnaSequence &dnaSequence) {
 }
 
 inline DnaSequence&  DnaSequence::operator=(const std::string& dna) {
-    init(dna.c_str());
+    init(isValid(dna).c_str());
     return *this;
 }
 
@@ -70,14 +70,22 @@ inline std::ostream& operator << (std::ostream& os, const DnaSequence& dnaSequen
     return os;
 }
 
-inline int operator == (const DnaSequence& dnaSequence1, const DnaSequence& dnaSequence2)
+inline char DnaSequence::operator[] (size_t index)
 {
-    return dnaSequence1.getDna()==dnaSequence2.getDna();
+    return m_dna[index-1];
 }
 
-inline int operator != (const DnaSequence& dnaSequence1, const DnaSequence& dnaSequence2)
+inline bool operator == (const DnaSequence& dnaSequence1, const DnaSequence& dnaSequence2)
 {
-    return !(dnaSequence1.getDna()==dnaSequence2.getDna());
+    if(!strcmp(dnaSequence1.getDna(),dnaSequence2.getDna()))
+        return true;
+    return false;}
+
+inline bool operator != (const DnaSequence& dnaSequence1, const DnaSequence& dnaSequence2)
+{
+    if(!strcmp(dnaSequence1.getDna(),dnaSequence2.getDna()))
+        return false;
+    return true;
 }
 
 inline size_t DnaSequence::length(const char *& string) const

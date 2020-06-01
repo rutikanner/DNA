@@ -1,0 +1,3 @@
+/home/ruti/Desktop/c++/DnaSequence/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/ruti/Desktop/c++/DnaSequence/cmake-build-debug/CMakeFiles/DnaSequence.dir
+/home/ruti/Desktop/c++/DnaSequence/cmake-build-debug/CMakeFiles/edit_cache.dir

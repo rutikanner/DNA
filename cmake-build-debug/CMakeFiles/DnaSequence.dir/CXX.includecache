@@ -1,0 +1,26 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/ruti/Desktop/c++/DnaSequence/dna_sequence.cpp
+dna_sequence.h
+/home/ruti/Desktop/c++/DnaSequence/dna_sequence.h
+
+/home/ruti/Desktop/c++/DnaSequence/dna_sequence.h
+string
+-
+iostream
+-
+cstring
+-
+
+/home/ruti/Desktop/c++/DnaSequence/main.cpp
+iostream
+-
+dna_sequence.h
+/home/ruti/Desktop/c++/DnaSequence/dna_sequence.h
+

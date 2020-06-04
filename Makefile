@@ -7,13 +7,15 @@ OBJS=$(SOURCES:.cpp=.o)
 
 INC_DIR=../include
 CC=g++
-CFLAGS= -c -pedantic -Wall -Werror -Wconversion -ansi -g -I$(INC_DIR)
+CFLAGS= -c -pedantic -Wall -Werror -Wconversion -ansi -g -lgtest -lgtest_main -pthread -I$(INC_DIR)
 CXXFLAGS=$(CFLAGS)
 LDFLAGS= -g
 
 .PHONY: clean run gdb
 
 $(TARGET): $(OBJS)
+
+
 
 include .depends
 
@@ -25,6 +27,8 @@ clean:
 
 run: $(TARGET)
 	./$(TARGET)
+
+# valgrind
 
 # Do not forget to add '-g' to CFLAGS
 gdb: $(TARGET)

@@ -93,6 +93,24 @@
 		<Unit filename="/home/ruti/Desktop/c++/DnaSequence/main.cpp">
 			<Option target="DnaSequence"/>
 		</Unit>
+		<Unit filename="/home/ruti/Desktop/c++/DnaSequence/nucleotide.cpp">
+			<Option target="DnaSequence"/>
+		</Unit>
+		<Unit filename="/home/ruti/Desktop/c++/DnaSequence/nucleotide.h">
+			<Option target="DnaSequence"/>
+		</Unit>
+		<Unit filename="/home/ruti/Desktop/c++/DnaSequence/test_dna.cpp">
+			<Option target="DnaSequence"/>
+		</Unit>
+		<Unit filename="/home/ruti/Desktop/c++/DnaSequence/test_dna.h">
+			<Option target="DnaSequence"/>
+		</Unit>
+		<Unit filename="/home/ruti/Desktop/c++/DnaSequence/val_error.cpp">
+			<Option target="DnaSequence"/>
+		</Unit>
+		<Unit filename="/home/ruti/Desktop/c++/DnaSequence/val_error.h">
+			<Option target="DnaSequence"/>
+		</Unit>
 		<Unit filename="/home/ruti/Desktop/c++/DnaSequence/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>

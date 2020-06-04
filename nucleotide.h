@@ -8,7 +8,9 @@
 class Nucleotide{
 public:
     Nucleotide(const char& nucleotide);
-
+    Nucleotide() {};
+    Nucleotide& operator = (const char& c);
+    operator char ();
 private:
     char m_nucleotide;
 };
@@ -17,5 +19,10 @@ inline Nucleotide::Nucleotide(const char &nucleotide) {
         m_nucleotide = nucleotide;
     else throw ValError("nucleotide in not valid");
 }
+
+inline Nucleotide & Nucleotide::operator=(const char &c) {m_nucleotide = c;}
+
+inline Nucleotide::operator char () {return m_nucleotide;}
+
 
 #endif //DNASEQUENCE_NUCLEOTIDE_H

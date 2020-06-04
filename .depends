@@ -1,2 +1,0 @@
-dna_sequence.o: dna_sequence.cpp dna_sequence.h
-main.o: main.cpp dna_sequence.h

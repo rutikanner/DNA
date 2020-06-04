@@ -177,6 +177,87 @@ main.cpp.s:
 	$(MAKE) -f CMakeFiles/DnaSequence.dir/build.make CMakeFiles/DnaSequence.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+nucleotide.o: nucleotide.cpp.o
+
+.PHONY : nucleotide.o
+
+# target to build an object file
+nucleotide.cpp.o:
+	$(MAKE) -f CMakeFiles/DnaSequence.dir/build.make CMakeFiles/DnaSequence.dir/nucleotide.cpp.o
+.PHONY : nucleotide.cpp.o
+
+nucleotide.i: nucleotide.cpp.i
+
+.PHONY : nucleotide.i
+
+# target to preprocess a source file
+nucleotide.cpp.i:
+	$(MAKE) -f CMakeFiles/DnaSequence.dir/build.make CMakeFiles/DnaSequence.dir/nucleotide.cpp.i
+.PHONY : nucleotide.cpp.i
+
+nucleotide.s: nucleotide.cpp.s
+
+.PHONY : nucleotide.s
+
+# target to generate assembly for a file
+nucleotide.cpp.s:
+	$(MAKE) -f CMakeFiles/DnaSequence.dir/build.make CMakeFiles/DnaSequence.dir/nucleotide.cpp.s
+.PHONY : nucleotide.cpp.s
+
+test_dna.o: test_dna.cpp.o
+
+.PHONY : test_dna.o
+
+# target to build an object file
+test_dna.cpp.o:
+	$(MAKE) -f CMakeFiles/DnaSequence.dir/build.make CMakeFiles/DnaSequence.dir/test_dna.cpp.o
+.PHONY : test_dna.cpp.o
+
+test_dna.i: test_dna.cpp.i
+
+.PHONY : test_dna.i
+
+# target to preprocess a source file
+test_dna.cpp.i:
+	$(MAKE) -f CMakeFiles/DnaSequence.dir/build.make CMakeFiles/DnaSequence.dir/test_dna.cpp.i
+.PHONY : test_dna.cpp.i
+
+test_dna.s: test_dna.cpp.s
+
+.PHONY : test_dna.s
+
+# target to generate assembly for a file
+test_dna.cpp.s:
+	$(MAKE) -f CMakeFiles/DnaSequence.dir/build.make CMakeFiles/DnaSequence.dir/test_dna.cpp.s
+.PHONY : test_dna.cpp.s
+
+val_error.o: val_error.cpp.o
+
+.PHONY : val_error.o
+
+# target to build an object file
+val_error.cpp.o:
+	$(MAKE) -f CMakeFiles/DnaSequence.dir/build.make CMakeFiles/DnaSequence.dir/val_error.cpp.o
+.PHONY : val_error.cpp.o
+
+val_error.i: val_error.cpp.i
+
+.PHONY : val_error.i
+
+# target to preprocess a source file
+val_error.cpp.i:
+	$(MAKE) -f CMakeFiles/DnaSequence.dir/build.make CMakeFiles/DnaSequence.dir/val_error.cpp.i
+.PHONY : val_error.cpp.i
+
+val_error.s: val_error.cpp.s
+
+.PHONY : val_error.s
+
+# target to generate assembly for a file
+val_error.cpp.s:
+	$(MAKE) -f CMakeFiles/DnaSequence.dir/build.make CMakeFiles/DnaSequence.dir/val_error.cpp.s
+.PHONY : val_error.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -192,6 +273,15 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... nucleotide.o"
+	@echo "... nucleotide.i"
+	@echo "... nucleotide.s"
+	@echo "... test_dna.o"
+	@echo "... test_dna.i"
+	@echo "... test_dna.s"
+	@echo "... val_error.o"
+	@echo "... val_error.i"
+	@echo "... val_error.s"
 .PHONY : help
 
 

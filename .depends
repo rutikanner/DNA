@@ -1,0 +1,5 @@
+test_dna.o: test_dna.cpp test_dna.h dna_sequence.h val_error.h
+dna_sequence.o: dna_sequence.cpp dna_sequence.h val_error.h
+nucleotide.o: nucleotide.cpp nucleotide.h
+val_error.o: val_error.cpp val_error.h
+main.o: main.cpp dna_sequence.h val_error.h test_dna.h

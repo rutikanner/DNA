@@ -9,7 +9,7 @@
 #include <iostream>
 #include <cstring>
 #include "val_error.h"
-#include "nucleotide.h"
+//#include "nucleotide.h"
 
 class DnaSequence{
 
@@ -20,35 +20,35 @@ public:
     DnaSequence& operator = (const DnaSequence& dnaSequence);
 //    DnaSequence& operator = (const char* string);
 //    DnaSequence& operator = (const std::string& string);
-    Nucleotide& operator [] (size_t index);
+//    Nucleotide& operator [] (size_t index);
 //    void init(const char* dna);
     const char* getDna() const;
     size_t length(const char *string) const ;
 
 private:
 
-    class Nucleotide;
-    Nucleotide* m_dna;
+//    class Nucleotide;
+    char* m_dna;
 
 };
 
-//inline bool isValidSeq(const std::string& dna){
-//
-//    if(std::string(dna).find_first_not_of("ACGT") != std::string::npos)
-//        return false;
-//    return true;
-//}
-//
-//inline std::string checkValid(const std::string& dna){
-//
-//    if(!isValidSeq(dna))
-//        throw ValError("ValError: DNA sequence is not valid");
-//    return dna;
-//}
+inline bool isValidSeq(const std::string& dna){
+
+    if(std::string(dna).find_first_not_of("ACGT") != std::string::npos)
+        return false;
+    return true;
+}
+
+inline std::string checkValid(const std::string& dna){
+
+    if(!isValidSeq(dna))
+        throw ValError("ValError: DNA sequence is not valid");
+    return dna;
+}
 
 
-inline DnaSequence::DnaSequence(const std::string& string): m_dna(new Nucleotide[string.length()]){
-    strcpy(char (m_dna), string.c_str());
+inline DnaSequence::DnaSequence(const std::string& string): m_dna(new char [string.length()]){
+    strcpy(m_dna, string.c_str());
 }
 
 inline DnaSequence::DnaSequence(char *string) : m_dna(new char [strlen(string)]) {
@@ -94,10 +94,10 @@ inline std::ostream& operator << (std::ostream& os, const DnaSequence& dnaSequen
     return os;
 }
 
-inline char& DnaSequence::operator[] (size_t index)
-{
-    return m_dna[index-1];
-}
+//inline char& DnaSequence::operator[] (size_t index)
+//{
+//    return m_dna[index-1];
+//}
 
 inline bool operator == (const DnaSequence& dnaSequence1, const DnaSequence& dnaSequence2)
 {

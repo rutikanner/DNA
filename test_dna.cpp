@@ -28,11 +28,13 @@ TEST(DnaTest, OperatorEqual)
     ASSERT_TRUE(d1.getDna() == d2.getDna());
 }
 
+
 TEST(DnaTest, OperatorNotEqual)
 {
     DnaSequence d1((char*)"CG");
     DnaSequence d2((char*)"C");
     ASSERT_TRUE(d1.getDna() != d2.getDna());
+
 }
 
 TEST(DnaTest, Exeption)
@@ -46,7 +48,4 @@ TEST(DnaTest, OperatorGet)
     DnaSequence d1((char*)"CA");
     ASSERT_EQ(d1[0].getNuc(),'C');
 }
-
-
-
 

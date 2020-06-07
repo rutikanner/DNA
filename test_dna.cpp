@@ -73,3 +73,15 @@ TEST(DnaTest, GetPairSeq)
     DnaSequence d1((char*)"GTGC");
     ASSERT_EQ(d1.getPairSeq(), "GCAC");
 }
+
+TEST(DnaTest, SubSeq)
+{
+    DnaSequence d1((char*)"GTGC");
+    ASSERT_EQ(d1.findSubSeq("TG"), 1);
+}
+
+TEST(DnaTest, NoSubSeq)
+{
+    DnaSequence d1((char*)"GTGC");
+    ASSERT_EQ(d1.findSubSeq("A"), -1);
+}

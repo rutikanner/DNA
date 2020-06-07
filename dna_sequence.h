@@ -198,15 +198,12 @@ inline std::string DnaSequence::getPairSeq() {
 }
 
 inline size_t DnaSequence::findSubSeq(std::string subString, size_t start) {
-    size_t length = subString.length() , index = 0;
-    bool found = false;
-    {
-
+    size_t length = subString.length();
+    for (int i = 0; i < (m_length-length); ++i) {
+        if(slicing(i,i+length)==subString)
+            return i;
     }
-    if(subString[start] == m_dna[start].getNuc())
-        findSubSeq(subString+=1 , start++);
-    else findSubSeq(subString , start++);
-
+    return -1;
 }
 
 inline std::ostream& operator << (std::ostream& os, const DnaSequence& dnaSequence)

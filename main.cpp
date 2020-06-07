@@ -1,15 +1,18 @@
 #include <iostream>
 #include "dna_sequence.h"
 #include "test_dna.h"
-
-int main() {
+//#include <gtest/gtest.h>
+//int main(int argc , char *argv[])
+//{
 //    testing::InitGoogleTest(&argc, argv);
 //    return RUN_ALL_TESTS();
+//}
+int main() {
 
     try {
 //        Nucleotide n('C');
         char* c_str= (char *)"C";
-        std::string string = "As";
+        std::string string = "AGCT";
         DnaSequence d1((char *)"CG");
         std::cout<<d1<<std::endl;
         DnaSequence d2(string);
@@ -26,7 +29,9 @@ int main() {
         std::cout<<d4<<std::endl;
         DnaSequence d5(string);
         std::cout<<d5<<std::endl;
-//        std::cout<<d5[3]<<std::endl;
+        std::cout<<"d5[3]: "<<d5[3]<<std::endl;
+        d5[3] = 'A';
+        std::cout<<"d5: "<<d5<<std::endl;
         d3 = d1;
         std::cout<<"d3: "<<d3<<std::endl;
         std::cout<<"d1: "<<d1<<std::endl;

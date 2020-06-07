@@ -14,23 +14,45 @@
 class DnaSequence{
 
 public:
+
+    class Nucleotide{
+    public:
+        Nucleotide(char& nucleotide):m_nucleotide(nucleotide){}
+        Nucleotide& operator = (const char& nucleotide){
+            if ((m_nucleotide == 'A') or (m_nucleotide == 'C') or (m_nucleotide == 'G') or m_nucleotide == 'T')
+                m_nucleotide = nucleotide;
+            else throw ValError("nucleotide in not valid");
+            return *this;
+        }
+        operator char () {return m_nucleotide;}
+
+    private:
+        char& m_nucleotide;
+    };
+
     DnaSequence(char* string);
     DnaSequence(const std::string& string);
     DnaSequence(DnaSequence& dnaSequence);
     DnaSequence& operator = (const DnaSequence& dnaSequence);
 //    DnaSequence& operator = (const char* string);
 //    DnaSequence& operator = (const std::string& string);
-//    Nucleotide& operator [] (size_t index);
+
+    char & operator [](size_t idx) const;
+    Nucleotide operator [](size_t idx) {
+        return m_dna[idx - 1];
+    }
+
 //    void init(const char* dna);
     const char* getDna() const;
     size_t length(const char *string) const ;
 
+
 private:
 
-//    class Nucleotide;
     char* m_dna;
 
 };
+
 
 inline bool isValidSeq(const std::string& dna){
 
@@ -47,15 +69,15 @@ inline std::string checkValid(const std::string& dna){
 }
 
 
-inline DnaSequence::DnaSequence(const std::string& string): m_dna(new char [string.length()]){
+inline DnaSequence::DnaSequence(const std::string& string): m_dna(new char[checkValid(string).length()]){
     strcpy(m_dna, string.c_str());
 }
 
-inline DnaSequence::DnaSequence(char *string) : m_dna(new char [strlen(string)]) {
+inline DnaSequence::DnaSequence(char *string) : m_dna(new char [checkValid(string).length()]) {
     strcpy(m_dna, string);
 }
 
-inline DnaSequence::DnaSequence(DnaSequence &dnaSequence) : m_dna(new char [(checkValid(dnaSequence.getDna())).length()]){
+inline DnaSequence::DnaSequence(DnaSequence &dnaSequence) : m_dna(new char [checkValid(dnaSequence.getDna()).length()]){
     strcpy(m_dna, dnaSequence.getDna());
 }
 
@@ -94,10 +116,9 @@ inline std::ostream& operator << (std::ostream& os, const DnaSequence& dnaSequen
     return os;
 }
 
-//inline char& DnaSequence::operator[] (size_t index)
-//{
-//    return m_dna[index-1];
-//}
+inline char&  DnaSequence::operator [](size_t idx) const{
+    return m_dna[idx - 1];
+}
 
 inline bool operator == (const DnaSequence& dnaSequence1, const DnaSequence& dnaSequence2)
 {

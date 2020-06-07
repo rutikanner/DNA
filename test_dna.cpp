@@ -49,3 +49,21 @@ TEST(DnaTest, OperatorGet)
     ASSERT_EQ(d1[0].getNuc(),'C');
 }
 
+TEST(DnaTest, OperatorSet)
+{
+    DnaSequence d1((char*)"CA");
+    d1[1] = 'A';
+    ASSERT_EQ(d1[1].getNuc(),'A');
+}
+
+TEST(DnaTest, BasicSlicing)
+{
+    DnaSequence d1((char*)"CAGGAC");
+    ASSERT_EQ(d1.slicing(1,3),"AG");
+}
+
+TEST(DnaTest, SlicingOutOfRange)
+{
+    DnaSequence d1((char*)"CAGGAC");
+    ASSERT_ANY_THROW(d1.slicing(0,7));
+}

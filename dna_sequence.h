@@ -9,13 +9,13 @@
 #include <iostream>
 #include <cstring>
 #include "val_error.h"
-//#include "nucleotide.h"
+#include <fstream>
 
 class DnaSequence{
 
-
 private:
     class Nucleotide{
+
     public:
         Nucleotide(char nucleotide):m_nucleotide(nucleotide){
             if (!isValid(nucleotide))
@@ -50,36 +50,18 @@ public:
     DnaSequence(DnaSequence& dnaSequence);
     ~DnaSequence();
     DnaSequence& operator = (const DnaSequence& dnaSequence);
-//    DnaSequence& operator = (const char* string);
     DnaSequence& operator = (const std::string& string);
     const Nucleotide & operator [](size_t idx) const;
     Nucleotide& operator [](size_t idx);
     std::string getDna() const;
     size_t length() const ;
+    void readFromFile(const std::string& fileName);
+    void writeToFile(const std::string& fileName);
+    std::string slicing(size_t start, size_t end);
+    size_t findSubSeq(std::string subString);
     friend std::ostream& operator << (std::ostream& os, const DnaSequence& dnaSequence);
 
 };
-
-//inline bool isValidNuc(const std::string& dna){
-//
-//    if(std::string(dna).find_first_not_of("ACGT") != std::string::npos)
-//        return false;
-//    return true;
-//}
-
-//inline bool isValidSeq(const std::string& dna){
-//
-//    if(std::string(dna).find_first_not_of("ACGT") != std::string::npos)
-//        return false;
-//    return true;
-//}
-//
-//inline std::string checkValid(const std::string& dna){
-//
-//    if(!isValidSeq(dna))
-//        throw ValError("ValError: DNA sequence is not valid");
-//    return dna;
-//}
 
 inline void DnaSequence::iniByStr(const std::string& str) {
     m_length = str.length();
@@ -119,10 +101,6 @@ inline DnaSequence::DnaSequence(const std::string& str): m_dna(NULL), m_length(0
     iniByStr(str);
 }
 
-//inline DnaSequence::DnaSequence(char *string) : m_dna(new char [checkValid(string).length()]) {
-//    strcpy(m_dna, string);
-//}
-
 inline DnaSequence::DnaSequence(DnaSequence &dnaSequence){
     initFromOther(dnaSequence);
 }
@@ -152,20 +130,6 @@ inline DnaSequence& DnaSequence::operator=(const std::string &str) {
     return *this;
 }
 
-inline std::string DnaSequence::getDna() const {
-    std::string result;
-    for (size_t i = 0; i < m_length; ++i) {
-        result += (*this)[i].getNuc();
-    }
-    return result;
-}
-
-inline std::ostream& operator << (std::ostream& os, const DnaSequence& dnaSequence)
-{
-    os<<dnaSequence.getDna();
-    return os;
-}
-
 inline const DnaSequence::Nucleotide& DnaSequence::operator[](size_t index) const{
     if(m_length < index)
         throw "out ot range";
@@ -174,6 +138,68 @@ inline const DnaSequence::Nucleotide& DnaSequence::operator[](size_t index) cons
 
 inline DnaSequence::Nucleotide& DnaSequence::operator[](size_t index) {
     return const_cast<Nucleotide&>(static_cast<const DnaSequence&>(*this)[index]);
+}
+
+inline std::string DnaSequence::getDna() const {
+    std::string result;
+    for (size_t i = 0; i < m_length; ++i) {
+        result += (*this)[i].getNuc();
+    }
+    return result;
+}
+
+inline size_t DnaSequence::length() const
+{
+    return m_length;
+}
+
+//inline void DnaSequence::readFromFile(const std::string& fileName) {
+//    std::ifstream in(fileName);
+//    std::string dna;
+//    in >> dna;
+//    iniByStr(dna);
+//}
+//
+//inline void DnaSequence::writeToFile(const std::string& fileName){
+//    std::ofstream out(fileName);
+//    out << m_dna;
+//}
+
+inline std::string DnaSequence::slicing(size_t start, size_t end) {
+    std::string result;
+
+    if(end < start || end > m_length)
+        throw "out of range";
+
+    for (size_t i = start; i < end; ++i) {
+        result += m_dna[i].getNuc();
+    }
+    return result;
+}
+
+//inline size_t DnaSequence::findSubSeq(std::string subString) {
+//    size_t length = subString.length() , index = 0;
+//    bool found = false;
+//    while (!found)
+//        for (size_t i = 0; i< length; i++)
+//        {
+//
+//            if(subString[i] == m_dna[i].getNuc()) {
+//                found = true;
+//                index = i;
+//            }
+//
+//            else found = false;
+//        }
+//    if(found)
+//        return index;
+//
+//}
+
+inline std::ostream& operator << (std::ostream& os, const DnaSequence& dnaSequence)
+{
+    os<<dnaSequence.getDna();
+    return os;
 }
 
 inline bool operator == (const DnaSequence& dnaSequence1, const DnaSequence& dnaSequence2) {
@@ -191,13 +217,5 @@ inline bool operator != (const DnaSequence& dnaSequence1, const DnaSequence& dna
     return !(dnaSequence1.getDna() == dnaSequence2.getDna());
 }
 
-inline size_t DnaSequence::length() const
-{
-    return m_length;
-}
-
-//inline char DnaSequence::Nucleotide::getNuc() const{
-//    return m_nucleotide;
-//}
 
 #endif //DNASEQUENCE_DNA_SEQUENCE_H

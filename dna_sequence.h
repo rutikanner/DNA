@@ -31,6 +31,17 @@ private:
             return *this;
         }
         char getNuc() const{return m_nucleotide;}
+        char getPairNuc() const {
+            if (m_nucleotide == 'T')
+                return 'A';
+            if (m_nucleotide == 'A')
+                return 'T';
+            if (m_nucleotide == 'G')
+                return 'C';
+
+            return 'G';
+        }
+
 
     private:
         char m_nucleotide;
@@ -58,7 +69,8 @@ public:
     void readFromFile(const std::string& fileName);
     void writeToFile(const std::string& fileName);
     std::string slicing(size_t start, size_t end);
-    size_t findSubSeq(std::string subString);
+    std::string getPairSeq();
+    size_t findSubSeq(std::string subString, size_t start = 0);
     friend std::ostream& operator << (std::ostream& os, const DnaSequence& dnaSequence);
 
 };
@@ -177,24 +189,25 @@ inline std::string DnaSequence::slicing(size_t start, size_t end) {
     return result;
 }
 
-//inline size_t DnaSequence::findSubSeq(std::string subString) {
-//    size_t length = subString.length() , index = 0;
-//    bool found = false;
-//    while (!found)
-//        for (size_t i = 0; i< length; i++)
-//        {
-//
-//            if(subString[i] == m_dna[i].getNuc()) {
-//                found = true;
-//                index = i;
-//            }
-//
-//            else found = false;
-//        }
-//    if(found)
-//        return index;
-//
-//}
+inline std::string DnaSequence::getPairSeq() {
+    std::string result;
+    for (size_t i = m_length; i > 0 ; --i) {
+        result+= m_dna[i -1].getPairNuc();
+    }
+    return result;
+}
+
+inline size_t DnaSequence::findSubSeq(std::string subString, size_t start) {
+    size_t length = subString.length() , index = 0;
+    bool found = false;
+    {
+
+    }
+    if(subString[start] == m_dna[start].getNuc())
+        findSubSeq(subString+=1 , start++);
+    else findSubSeq(subString , start++);
+
+}
 
 inline std::ostream& operator << (std::ostream& os, const DnaSequence& dnaSequence)
 {

@@ -67,3 +67,9 @@ TEST(DnaTest, SlicingOutOfRange)
     DnaSequence d1((char*)"CAGGAC");
     ASSERT_ANY_THROW(d1.slicing(0,7));
 }
+
+TEST(DnaTest, GetPairSeq)
+{
+    DnaSequence d1((char*)"GTGC");
+    ASSERT_EQ(d1.getPairSeq(), "GCAC");
+}

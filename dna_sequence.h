@@ -60,7 +60,7 @@ private:
 public:
 
     DnaSequence(const std::string& string);
-    DnaSequence(DnaSequence& dnaSequence);
+    DnaSequence(const DnaSequence& dnaSequence);
     ~DnaSequence();
     DnaSequence& operator = (const DnaSequence& dnaSequence);
     DnaSequence& operator = (const std::string& string);
@@ -70,12 +70,12 @@ public:
     size_t length() const ;
     void readFromFile(const std::string& fileName);
     void writeToFile(const std::string& fileName);
-    DnaSequence slicing(size_t start, size_t end);
+    DnaSequence slicing(size_t start, size_t end) const;
     DnaSequence getPairSeq();
     size_t findSubSeq(const DnaSequence& subSeq);
     size_t countSubSeq(const DnaSequence& subSeq);
-    std::vector<size_t> findAllSubSeq(const DnaSequence& subSeq);
-    std::vector<DnaSequence> findConsensusSeq(const DnaSequence& dnaSeq);
+    std::vector<size_t> findAllSubSeq(const DnaSequence& subSeq) const;
+    std::vector<DnaSequence> findConsensusSeq();
     friend std::ostream& operator << (std::ostream& os, const DnaSequence& dnaSequence);
 
 };
@@ -118,7 +118,7 @@ inline DnaSequence::DnaSequence(const std::string& str): m_dna(NULL), m_length(0
     iniByStr(str);
 }
 
-inline DnaSequence::DnaSequence(DnaSequence &dnaSequence){
+inline DnaSequence::DnaSequence(const DnaSequence &dnaSequence){
     initFromOther(dnaSequence);
 }
 
@@ -182,7 +182,7 @@ inline size_t DnaSequence::length() const
 //    out << m_dna;
 //}
 
-inline DnaSequence DnaSequence::slicing(size_t start, size_t end) {
+inline DnaSequence DnaSequence::slicing(size_t start, size_t end) const{
     std::string result;
 
     if(end < start || end > m_length)
@@ -191,6 +191,7 @@ inline DnaSequence DnaSequence::slicing(size_t start, size_t end) {
     for (size_t i = start; i < end; ++i) {
         result += m_dna[i].getNuc();
     }
+
     DnaSequence d(result);
 
     return d;
@@ -231,7 +232,7 @@ inline size_t DnaSequence::countSubSeq(const DnaSequence& subSeq){
     return findAllSubSeq(subSeq).size();
 }
 
-inline std::vector<size_t> DnaSequence::findAllSubSeq(const DnaSequence& subSeq){
+inline std::vector<size_t> DnaSequence::findAllSubSeq(const DnaSequence& subSeq) const{
     std::vector<size_t> vec;
     size_t j =0;
 
@@ -254,9 +255,7 @@ inline std::vector<size_t> DnaSequence::findAllSubSeq(const DnaSequence& subSeq)
     return vec;
 }
 
-inline std::vector<DnaSequence> DnaSequence::findConsensusSeq(const DnaSequence& dnaSeq){
 
-}
 
 
 inline std::ostream& operator << (std::ostream& os, const DnaSequence& dnaSequence)

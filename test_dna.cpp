@@ -111,3 +111,14 @@ TEST(DnaTest, FindAllSubSeq)
     ASSERT_EQ(res, vector);
 
 }
+
+TEST(DnaTest, FindConsensusSeq)
+{
+    std::vector<DnaSequence> vect;
+    vect.push_back(DnaSequence("ATGTTATGTTGA"));
+    vect.push_back(DnaSequence("ATGTTGAGTGTTTAA"));
+    ASSERT_EQ(DnaSequence("ATGTTATGTTGAGTGTTTAA").findConsensusSeq(), vect);
+    vect.clear();
+    ASSERT_EQ(DnaSequence("AAAAAAAAAAATTTTT").findConsensusSeq(), vect);
+
+}

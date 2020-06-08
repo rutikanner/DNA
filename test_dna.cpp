@@ -46,15 +46,17 @@ TEST(DnaTest, Exeption)
 TEST(DnaTest, OperatorGet)
 {
     DnaSequence d1((char*)"CA");
-    ASSERT_EQ(d1[0].getNuc(),'C');
+    ASSERT_EQ(char(d1[0]),'C');
 }
 
 TEST(DnaTest, OperatorSet)
 {
     DnaSequence d1((char*)"CA");
-    d1[1] = 'A';
-    ASSERT_EQ(d1[1].getNuc(),'A');
+    d1[0] = 'A';
+    char d = d1[0];
+    ASSERT_EQ(d,'A');
 }
+
 
 TEST(DnaTest, BasicSlicing)
 {
@@ -77,30 +79,35 @@ TEST(DnaTest, GetPairSeq)
 TEST(DnaTest, SubSeq)
 {
     DnaSequence d1((char*)"GTGC");
-    ASSERT_EQ(d1.findSubSeq("TG"), 1);
+    DnaSequence d2((char*)"TG");
+
+    ASSERT_EQ(d1.findSubSeq(d2), 1);
 }
 
 TEST(DnaTest, NoSubSeq)
 {
     DnaSequence d1((char*)"GTGC");
-    ASSERT_EQ(d1.findSubSeq("A"), -1);
+    DnaSequence d2((char*)"A");
+    ASSERT_EQ(d1.findSubSeq(d2), -1);
 }
 
 TEST(DnaTest, CountSubSeq)
 {
     DnaSequence d1((char*)"GCTGC");
-    ASSERT_EQ(d1.countSubSeq("GC"), 2);
+    DnaSequence d2((char*)"GC");
+
+    ASSERT_EQ(d1.countSubSeq(d2), 2);
 }
 
 TEST(DnaTest, FindAllSubSeq)
 {
     DnaSequence d1((char*)"GCTGCGC");
+    DnaSequence d2((char*)"GC");
     std::vector<size_t> vector;
     vector.push_back(0);
     vector.push_back(3);
     vector.push_back(5);
-    for (std::vector<size_t>::const_iterator iter = vector.begin(); *iter; ++iter) {
-        ASSERT_EQ(d1.countSubSeq("GC"), *iter);
-    }
+    std::vector<size_t> res = d1.findAllSubSeq(d2);
+    ASSERT_EQ(res, vector);
 
 }

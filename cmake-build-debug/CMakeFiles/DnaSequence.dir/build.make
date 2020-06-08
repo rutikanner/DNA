@@ -105,33 +105,9 @@ CMakeFiles/DnaSequence.dir/dna_sequence.cpp.o.provides: CMakeFiles/DnaSequence.d
 CMakeFiles/DnaSequence.dir/dna_sequence.cpp.o.provides.build: CMakeFiles/DnaSequence.dir/dna_sequence.cpp.o
 
 
-CMakeFiles/DnaSequence.dir/nucleotide.cpp.o: CMakeFiles/DnaSequence.dir/flags.make
-CMakeFiles/DnaSequence.dir/nucleotide.cpp.o: ../nucleotide.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ruti/Desktop/c++/DnaSequence/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/DnaSequence.dir/nucleotide.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/DnaSequence.dir/nucleotide.cpp.o -c /home/ruti/Desktop/c++/DnaSequence/nucleotide.cpp
-
-CMakeFiles/DnaSequence.dir/nucleotide.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/DnaSequence.dir/nucleotide.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ruti/Desktop/c++/DnaSequence/nucleotide.cpp > CMakeFiles/DnaSequence.dir/nucleotide.cpp.i
-
-CMakeFiles/DnaSequence.dir/nucleotide.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/DnaSequence.dir/nucleotide.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ruti/Desktop/c++/DnaSequence/nucleotide.cpp -o CMakeFiles/DnaSequence.dir/nucleotide.cpp.s
-
-CMakeFiles/DnaSequence.dir/nucleotide.cpp.o.requires:
-
-.PHONY : CMakeFiles/DnaSequence.dir/nucleotide.cpp.o.requires
-
-CMakeFiles/DnaSequence.dir/nucleotide.cpp.o.provides: CMakeFiles/DnaSequence.dir/nucleotide.cpp.o.requires
-	$(MAKE) -f CMakeFiles/DnaSequence.dir/build.make CMakeFiles/DnaSequence.dir/nucleotide.cpp.o.provides.build
-.PHONY : CMakeFiles/DnaSequence.dir/nucleotide.cpp.o.provides
-
-CMakeFiles/DnaSequence.dir/nucleotide.cpp.o.provides.build: CMakeFiles/DnaSequence.dir/nucleotide.cpp.o
-
-
 CMakeFiles/DnaSequence.dir/test_dna.cpp.o: CMakeFiles/DnaSequence.dir/flags.make
 CMakeFiles/DnaSequence.dir/test_dna.cpp.o: ../test_dna.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ruti/Desktop/c++/DnaSequence/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/DnaSequence.dir/test_dna.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ruti/Desktop/c++/DnaSequence/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/DnaSequence.dir/test_dna.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/DnaSequence.dir/test_dna.cpp.o -c /home/ruti/Desktop/c++/DnaSequence/test_dna.cpp
 
 CMakeFiles/DnaSequence.dir/test_dna.cpp.i: cmake_force
@@ -155,7 +131,7 @@ CMakeFiles/DnaSequence.dir/test_dna.cpp.o.provides.build: CMakeFiles/DnaSequence
 
 CMakeFiles/DnaSequence.dir/val_error.cpp.o: CMakeFiles/DnaSequence.dir/flags.make
 CMakeFiles/DnaSequence.dir/val_error.cpp.o: ../val_error.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ruti/Desktop/c++/DnaSequence/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/DnaSequence.dir/val_error.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ruti/Desktop/c++/DnaSequence/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/DnaSequence.dir/val_error.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/DnaSequence.dir/val_error.cpp.o -c /home/ruti/Desktop/c++/DnaSequence/val_error.cpp
 
 CMakeFiles/DnaSequence.dir/val_error.cpp.i: cmake_force
@@ -181,7 +157,6 @@ CMakeFiles/DnaSequence.dir/val_error.cpp.o.provides.build: CMakeFiles/DnaSequenc
 DnaSequence_OBJECTS = \
 "CMakeFiles/DnaSequence.dir/main.cpp.o" \
 "CMakeFiles/DnaSequence.dir/dna_sequence.cpp.o" \
-"CMakeFiles/DnaSequence.dir/nucleotide.cpp.o" \
 "CMakeFiles/DnaSequence.dir/test_dna.cpp.o" \
 "CMakeFiles/DnaSequence.dir/val_error.cpp.o"
 
@@ -190,12 +165,11 @@ DnaSequence_EXTERNAL_OBJECTS =
 
 DnaSequence: CMakeFiles/DnaSequence.dir/main.cpp.o
 DnaSequence: CMakeFiles/DnaSequence.dir/dna_sequence.cpp.o
-DnaSequence: CMakeFiles/DnaSequence.dir/nucleotide.cpp.o
 DnaSequence: CMakeFiles/DnaSequence.dir/test_dna.cpp.o
 DnaSequence: CMakeFiles/DnaSequence.dir/val_error.cpp.o
 DnaSequence: CMakeFiles/DnaSequence.dir/build.make
 DnaSequence: CMakeFiles/DnaSequence.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/ruti/Desktop/c++/DnaSequence/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable DnaSequence"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/ruti/Desktop/c++/DnaSequence/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable DnaSequence"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/DnaSequence.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -205,7 +179,6 @@ CMakeFiles/DnaSequence.dir/build: DnaSequence
 
 CMakeFiles/DnaSequence.dir/requires: CMakeFiles/DnaSequence.dir/main.cpp.o.requires
 CMakeFiles/DnaSequence.dir/requires: CMakeFiles/DnaSequence.dir/dna_sequence.cpp.o.requires
-CMakeFiles/DnaSequence.dir/requires: CMakeFiles/DnaSequence.dir/nucleotide.cpp.o.requires
 CMakeFiles/DnaSequence.dir/requires: CMakeFiles/DnaSequence.dir/test_dna.cpp.o.requires
 CMakeFiles/DnaSequence.dir/requires: CMakeFiles/DnaSequence.dir/val_error.cpp.o.requires
 

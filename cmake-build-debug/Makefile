@@ -177,33 +177,6 @@ main.cpp.s:
 	$(MAKE) -f CMakeFiles/DnaSequence.dir/build.make CMakeFiles/DnaSequence.dir/main.cpp.s
 .PHONY : main.cpp.s
 
-nucleotide.o: nucleotide.cpp.o
-
-.PHONY : nucleotide.o
-
-# target to build an object file
-nucleotide.cpp.o:
-	$(MAKE) -f CMakeFiles/DnaSequence.dir/build.make CMakeFiles/DnaSequence.dir/nucleotide.cpp.o
-.PHONY : nucleotide.cpp.o
-
-nucleotide.i: nucleotide.cpp.i
-
-.PHONY : nucleotide.i
-
-# target to preprocess a source file
-nucleotide.cpp.i:
-	$(MAKE) -f CMakeFiles/DnaSequence.dir/build.make CMakeFiles/DnaSequence.dir/nucleotide.cpp.i
-.PHONY : nucleotide.cpp.i
-
-nucleotide.s: nucleotide.cpp.s
-
-.PHONY : nucleotide.s
-
-# target to generate assembly for a file
-nucleotide.cpp.s:
-	$(MAKE) -f CMakeFiles/DnaSequence.dir/build.make CMakeFiles/DnaSequence.dir/nucleotide.cpp.s
-.PHONY : nucleotide.cpp.s
-
 test_dna.o: test_dna.cpp.o
 
 .PHONY : test_dna.o
@@ -273,9 +246,6 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
-	@echo "... nucleotide.o"
-	@echo "... nucleotide.i"
-	@echo "... nucleotide.s"
 	@echo "... test_dna.o"
 	@echo "... test_dna.i"
 	@echo "... test_dna.s"

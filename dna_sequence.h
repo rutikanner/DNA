@@ -41,8 +41,9 @@ private:
                 return 'C';
 
             return 'G';
-        }
 
+        }
+        operator char(){return m_nucleotide;}
 
     private:
         char m_nucleotide;
@@ -71,10 +72,10 @@ public:
     void writeToFile(const std::string& fileName);
     DnaSequence slicing(size_t start, size_t end);
     DnaSequence getPairSeq();
-    size_t findSubSeq(std::string subString);
-    size_t countSubSeq(std::string subSeq);
-    std::vector<size_t> findAllSubSeq(std::string subString);
-//    std::vector<DnaSequence> findConsensusSeq(std::string subString);
+    size_t findSubSeq(const DnaSequence& subSeq);
+    size_t countSubSeq(const DnaSequence& subSeq);
+    std::vector<size_t> findAllSubSeq(const DnaSequence& subSeq);
+    std::vector<DnaSequence> findConsensusSeq(const DnaSequence& dnaSeq);
     friend std::ostream& operator << (std::ostream& os, const DnaSequence& dnaSequence);
 
 };
@@ -191,50 +192,70 @@ inline DnaSequence DnaSequence::slicing(size_t start, size_t end) {
         result += m_dna[i].getNuc();
     }
     DnaSequence d(result);
+
     return d;
 }
 
 inline DnaSequence DnaSequence::getPairSeq() {
     std::string result;
+
     for (size_t i = m_length; i > 0 ; --i) {
         result+= m_dna[i -1].getPairNuc();
     }
     DnaSequence d(result);
+
     return d;
-//    return result;
 }
 
-inline size_t DnaSequence::findSubSeq(std::string subSeq) {
-    size_t length = subSeq.length();
-    for (size_t i = 0; i < (m_length-length+1); ++i) {
-        if(slicing(i,i+length).getDna()==subSeq)
-            return i;
+inline size_t DnaSequence::findSubSeq(const DnaSequence& subSeq) {
+
+    for (size_t i = 0; i < m_length; ++i) {
+
+        if(m_dna[i] == subSeq.m_dna[0])
+        {
+            size_t j;
+            for (j = 0; j < subSeq.m_length; ++j) {
+                if (m_dna[i+j] != subSeq.m_dna[j])
+                    break;
+
+                if(subSeq.m_length -1 == j)
+                    return i;
+            }
+        }
     }
     return -1;
 }
 
-inline size_t DnaSequence::countSubSeq(std::string subSeq){
-    size_t length = subSeq.length();
-    size_t counter = 0;
-    for (size_t i = 0; i < (m_length-length+1); ++i) {
-        if(slicing(i,i+length).getDna()==subSeq) {
-            counter++;
-        }
-    }
-    return counter;
+inline size_t DnaSequence::countSubSeq(const DnaSequence& subSeq){
+
+    return findAllSubSeq(subSeq).size();
 }
 
-inline std::vector<size_t> DnaSequence::findAllSubSeq(std::string subSeq){
-    std::vector<size_t> vector;
-    size_t length = subSeq.length();
-    size_t counter = 0;
-    for (size_t i = 0; i < (m_length-length+1); ++i) {
-        if(slicing(i,i+length).getDna()==subSeq) {
-            vector.push_back(counter);
-            counter++;
+inline std::vector<size_t> DnaSequence::findAllSubSeq(const DnaSequence& subSeq){
+    std::vector<size_t> vec;
+    size_t j =0;
+
+    for (size_t i = 0; i < m_length; ++i) {
+
+        if (m_dna[i] == subSeq.m_dna[0]) {
+
+            for (j = 0; j < subSeq.m_length; ++j) {
+
+                if (m_dna[i + j] != subSeq.m_dna[j])
+                    break;
+
+                if (subSeq.m_length - 1 == j) {
+                    vec.push_back(i);
+                }
+
+            }
         }
     }
-    return vector;
+    return vec;
+}
+
+inline std::vector<DnaSequence> DnaSequence::findConsensusSeq(const DnaSequence& dnaSeq){
+
 }
 
 

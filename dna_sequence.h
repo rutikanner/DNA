@@ -68,7 +68,7 @@ public:
     Nucleotide& operator [](size_t idx);
     std::string getDna() const;
     size_t length() const ;
-    void writeToFile(const std::string& fileName);
+    void writeToFile(const char* path);
     DnaSequence slicing(size_t start, size_t end) const;
     DnaSequence getPairSeq();
     size_t findSubSeq(const DnaSequence& subSeq);
@@ -79,40 +79,6 @@ public:
 
 };
 
-inline void DnaSequence::iniByStr(const std::string& str) {
-    m_length = str.length();
-    if (m_length) {
-        m_dna = new Nucleotide[m_length];
-        Nucleotide *ptrNucleotide = m_dna;
-        try {
-            for (std::string::const_iterator iter = str.begin(); *iter; ++iter) {
-                *ptrNucleotide++ = *iter;
-            }
-        }
-        catch (ValError &ex) {
-            delete[] m_dna;
-            m_dna = NULL;
-            throw;
-        }
-    }
-}
-
-inline void DnaSequence::initFromOther(const DnaSequence &dnaSequence) {
-    m_length = dnaSequence.m_length;
-    m_dna = new Nucleotide[m_length];
-    try {
-        for (size_t i = 0; i < m_length; ++i) {
-            (*this)[i] = dnaSequence[i];
-        }
-    }
-
-    catch (ValError& ex) {
-        delete [] m_dna;
-        m_dna = NULL;
-        throw;
-    }
-
-}
 inline DnaSequence::DnaSequence(const std::string& str): m_dna(NULL), m_length(0) {
     iniByStr(str);
 }
@@ -169,17 +135,17 @@ inline size_t DnaSequence::length() const
     return m_length;
 }
 
-inline void readFromFile(const std::string& fileName) {
-   std::ifstream in(fileName);
-   std::string dna;
-   in >> dna;
-   DnaSequence d(dna);
-      return d;
+inline DnaSequence readFromFile(const char* path) {
+    std::ifstream in(path);
+    std::string dna;
+    in >> dna;
+    DnaSequence d(dna);
+    return d;
 }
 
-inline void DnaSequence::writeToFile(const std::string& fileName){
-   std::ofstream out(fileName);
-   out << m_dna;
+inline void DnaSequence::writeToFile(const char* path){
+    std::ofstream out(path);
+    out << m_dna;
 }
 
 inline DnaSequence DnaSequence::slicing(size_t start, size_t end) const{
@@ -208,55 +174,10 @@ inline DnaSequence DnaSequence::getPairSeq() {
     return d;
 }
 
-inline size_t DnaSequence::findSubSeq(const DnaSequence& subSeq) {
-
-    for (size_t i = 0; i < m_length; ++i) {
-
-        if(m_dna[i] == subSeq.m_dna[0])
-        {
-            size_t j;
-            for (j = 0; j < subSeq.m_length; ++j) {
-                if (m_dna[i+j] != subSeq.m_dna[j])
-                    break;
-
-                if(subSeq.m_length -1 == j)
-                    return i;
-            }
-        }
-    }
-    return -1;
-}
-
 inline size_t DnaSequence::countSubSeq(const DnaSequence& subSeq){
 
     return findAllSubSeq(subSeq).size();
 }
-
-inline std::vector<size_t> DnaSequence::findAllSubSeq(const DnaSequence& subSeq) const{
-    std::vector<size_t> vec;
-    size_t j =0;
-
-    for (size_t i = 0; i < m_length; ++i) {
-
-        if (m_dna[i] == subSeq.m_dna[0]) {
-
-            for (j = 0; j < subSeq.m_length; ++j) {
-
-                if (m_dna[i + j] != subSeq.m_dna[j])
-                    break;
-
-                if (subSeq.m_length - 1 == j) {
-                    vec.push_back(i);
-                }
-
-            }
-        }
-    }
-    return vec;
-}
-
-
-
 
 inline std::ostream& operator << (std::ostream& os, const DnaSequence& dnaSequence)
 {

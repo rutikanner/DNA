@@ -68,7 +68,6 @@ public:
     Nucleotide& operator [](size_t idx);
     std::string getDna() const;
     size_t length() const ;
-    void readFromFile(const std::string& fileName);
     void writeToFile(const std::string& fileName);
     DnaSequence slicing(size_t start, size_t end) const;
     DnaSequence getPairSeq();
@@ -170,17 +169,18 @@ inline size_t DnaSequence::length() const
     return m_length;
 }
 
-//inline void DnaSequence::readFromFile(const std::string& fileName) {
-//    std::ifstream in(fileName);
-//    std::string dna;
-//    in >> dna;
-//    iniByStr(dna);
-//}
-//
-//inline void DnaSequence::writeToFile(const std::string& fileName){
-//    std::ofstream out(fileName);
-//    out << m_dna;
-//}
+inline void readFromFile(const std::string& fileName) {
+   std::ifstream in(fileName);
+   std::string dna;
+   in >> dna;
+   DnaSequence d(dna);
+      return d;
+}
+
+inline void DnaSequence::writeToFile(const std::string& fileName){
+   std::ofstream out(fileName);
+   out << m_dna;
+}
 
 inline DnaSequence DnaSequence::slicing(size_t start, size_t end) const{
     std::string result;
